@@ -8,7 +8,7 @@
 
 <div class="contact-box">
 	<h2>President</h2>
-	<!-- Insert image of Dr. K from the front page, possibly a little larger and probably aligned on the left. Ultimately a design question, which is above my pay grade. -->
+	
 	Phillip Kayser has degrees in education, theology, and philosophy, receiving an M.Div from Westminster Theological Seminary and a Ph.D from Whitefield Theological Seminary. Ordained in 1987, he serves as Senior Pastor of Dominion Covenant Church, a Presbyterian (CPC) church in Omaha, Nebraska. He has been privileged to speak at conferences hosted by the National Center For Family-Integrated Churches and Generations.org, and has spoken at three presidential campaign rallies.
 
 Professionally, he serves as Professor of Ethics at Whitefield Theological Seminary, is a board member for the Pickering Foundation of Biblical Preservation, and has lectured at the University of Nebraska at Omaha. He carefully defended Biblical inerrancy in his book, *The Canon of Scripture: A Presuppositional Study*, and has written over a dozen other books dealing with difficult theological subjects. Many of these works are being translated into foreign languages to equip the worldwide church.
