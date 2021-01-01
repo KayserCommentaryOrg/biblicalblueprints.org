@@ -4,7 +4,7 @@
 
 <h1>President</h1>
 
-<img src="images/pk2.jpg" class="wraparound">
+<img src="images/pk.jpg" class="wraparound">
 
 <p>
 	Phillip Kayser has degrees in education, theology, and philosophy, receiving an M.Div from Westminster Theological Seminary and a Ph.D from Whitefield Theological Seminary. Ordained in 1987, he serves as Senior Pastor of Dominion Covenant Church, a Presbyterian (CPC) church in Omaha, Nebraska. He has been privileged to speak at conferences hosted by the National Center For Family-Integrated Churches and Generations.org, and has spoken at three presidential campaign rallies.
