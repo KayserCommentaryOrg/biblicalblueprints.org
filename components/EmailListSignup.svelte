@@ -1,14 +1,3 @@
-<svelte:head>
-	<title>Email list · Dominion Institute</title>
-</svelte:head>
-
-<h1>Email list</h1>
-<hr>
-
-<p>
-	The email list is the best way to keep up to date with what we publish.
-</p>
-
 <p>
 	We send out emails infrequently, and work to keep them short and interesting.
 	You can read previous emails

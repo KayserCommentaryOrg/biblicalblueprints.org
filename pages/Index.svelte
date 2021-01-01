@@ -1,3 +1,7 @@
+<script>
+	import EmailListSignup from '../components/EmailListSignup.svelte'
+</script>
+
 <p>
 	Dominion Institute is a Christian non-profit organization founded to promote Biblical reformation through the educational ministry of Dr. Phillip Kayser. Our goal is to see individuals, families, churches, and cultures living by "every word that comes from the mouth of God" (Mt. 4:4). To fulfill this mission, we train missionaries, mentor pastors, encourage the underground church, translate theological resources, promote Biblical conferences, and support other ministries.
 </p>
@@ -14,13 +18,13 @@
 	His work (including links to his sermons, papers, and books) can be found at <a href="https://biblicalblueprints.com">BiblicalBlueprints.com</a>.
 </p>
 
-<!--
 <h2>Do you want to know what we're doing?</h2>
 <p>
 	Join our email list to keep up with our projects and opportunities to help!
-	/* email list signup goes here. Again, no code/design skills */
 </p>
--->
+
+<EmailListSignup />
+
 <h2>Questions?</h2>
 <p>
 	Send us an email at <a href="mailto:info@dominioninstitute.org">info@dominioninstitute.org</a>
