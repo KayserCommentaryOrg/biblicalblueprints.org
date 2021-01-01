@@ -68,6 +68,14 @@ a:hover {
 	padding: 0 32px;
 }
 
+img.wraparound {
+	width: 300px;
+	max-width: 100%;
+	margin-right: 16px;
+	margin-bottom: 8px;
+	float: left;
+}
+
 @media (max-width: 780px) {
 	.centered-content {
 		margin-left: auto;
@@ -76,14 +84,11 @@ a:hover {
 	body {
 		font-size: 16px;
 	}
-}
 
-img.wraparound {
-	width: 200px;
-	max-width: 100%;
-	margin-right: 8px;
-	margin-bottom: 8px;
-	float: left;
+	img.wraparound {
+		width: 200px;
+		margin-right: 8px;
+	}
 }
 
 @media (max-width: 480px) {
@@ -101,5 +106,6 @@ img.wraparound {
 	img.wraparound {
 		width: 100%;
 		float: unset;
+		margin-right: 0;
 	}
 }
