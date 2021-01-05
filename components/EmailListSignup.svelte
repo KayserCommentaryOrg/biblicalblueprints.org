@@ -44,11 +44,10 @@ input.email {
 #mc-embedded-subscribe {
 	margin: 16px 0;
 
-	background-color: #149bec;;
+	background-color: #00AEEF;
 	border: 0 none;
 	border-radius: 4px;
 	transition: all 0.23s ease-in-out 0s;
-	color: #fdfdfd;
 	cursor: pointer;
 	font-size: 15px;
 	font-weight: normal;
