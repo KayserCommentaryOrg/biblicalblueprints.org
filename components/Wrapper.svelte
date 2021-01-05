@@ -59,6 +59,9 @@
 
 
 <style>
+nav {
+	--navitem-padding: 16px;
+}
 .navbar-top {
 	background-color: #333333;
 }
@@ -76,6 +79,7 @@
 	list-style-type: none;
 	padding-left: 0;
 	margin: 0;
+	margin-left: calc(-1 * var(--navitem-padding));
 
 	display: flex;
 }
@@ -92,8 +96,8 @@
 	white-space: nowrap;
 	font-size: 18px;
 
-	padding-left: 16px;
-	padding-right: 16px;
+	padding-left: var(--navitem-padding);
+	padding-right: var(--navitem-padding);
 
 	display: flex;
 	align-items: center;
@@ -114,15 +118,16 @@
 }
 
 @media (max-width: 680px) {
+	nav {
+		--navitem-padding: 8px;
+	}
+
 	.navbar-top img {
 		height: 28px;
 	}
 
 	.navbar-top a {
 		font-size: 16px;
-
-		padding-left: 8px;
-		padding-right: 8px;
 	}
 
 	.navbar-top li {
