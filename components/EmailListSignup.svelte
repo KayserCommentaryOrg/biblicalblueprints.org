@@ -13,7 +13,6 @@
 		class="email"
 		id="mce-EMAIL"
 		placeholder="you@youremail.com"
-		autofocus
 	>
 
 	<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
