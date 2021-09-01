@@ -22,7 +22,6 @@
 <h1>The Board</h1>
 <ul>
 	<li>Joel Kayser, Vice President</li>
-	<li>Kevin DeGroot, Treasurer</li>
 	<li>David Denekas, Secretary</li>
 	<li>Gary Duff, Board Member</li>
 </ul>
