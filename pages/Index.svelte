@@ -27,5 +27,5 @@
 
 <h2>Questions?</h2>
 <p>
-	Send us an email at <a href="mailto:info@dominioninstitute.org">info@dominioninstitute.org</a>
+	Send us an email at <a href="mailto:info@dominioninstitute.com">info@dominioninstitute.com</a>
 </p>
