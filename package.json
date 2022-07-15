@@ -23,7 +23,7 @@
   "homepage": "https://github.com/KayserCommentaryOrg/biblicalblueprints.org#readme",
   "dependencies": {
     "param-case": "^2.1.1",
-    "svelte": "^3.24.0"
+    "svelte": "^3.49.0"
   },
   "devDependencies": {
     "live-server": "^1.2.1",
