@@ -2,7 +2,7 @@ require(`svelte/register`)
 
 const fs = require(`fs`)
 const path = require(`path`)
-const paramCase = require(`param-case`)
+const { paramCase } = require(`param-case`)
 
 const Wrapper = require(`../components/Wrapper.svelte`).default
 
