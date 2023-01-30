@@ -47,7 +47,7 @@
 				<a href={rootPath + "about.html"}>About</a>
 			</li>
 			<li>
-				<a href="https://donations.biblicalblueprints.org">Support</a>
+				<a href="https://donations.biblicalblueprints.org">Give</a>
 			</li>
 		</ul>
 	</div>
