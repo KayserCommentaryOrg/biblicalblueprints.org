@@ -1,103 +1,103 @@
-version: 2
+# version: 2
 
-defaults: &defaults
-  working_directory: ~/KayserCommentaryOrg/KayserCommentary
-  docker:
-    - image: circleci/node:8-browsers
+# defaults: &defaults
+#   working_directory: ~/KayserCommentaryOrg/KayserCommentary
+#   docker:
+#     - image: circleci/node:8-browsers
 
-git_restore_cache: &git_restore_cache
-  restore_cache:
-    keys:
-      - source-v2-{{ .Branch }}-{{ .Revision }}
-      - source-v2-{{ .Branch }}-
-      - source-v2-
+# git_restore_cache: &git_restore_cache
+#   restore_cache:
+#     keys:
+#       - source-v2-{{ .Branch }}-{{ .Revision }}
+#       - source-v2-{{ .Branch }}-
+#       - source-v2-
 
-git_save_cache: &git_save_cache
-  save_cache:
-    key: source-v2-{{ .Branch }}-{{ .Revision }}
-    paths:
-      - ".git"
-
-
-node_restore_cache: &node_restore_cache
-  restore_cache:
-    keys:
-      - v1-dependencies-{{ checksum "package.json" }}
-      - v1-dependencies-
-
-node_save_cache: &node_save_cache
-  save_cache:
-    paths:
-      - node_modules
-    key: v1-dependencies-{{ checksum "package.json" }}
+# git_save_cache: &git_save_cache
+#   save_cache:
+#     key: source-v2-{{ .Branch }}-{{ .Revision }}
+#     paths:
+#       - ".git"
 
 
-jobs:
-  build:
-    <<: *defaults
-    steps:
-      - *git_restore_cache
-      - checkout
-      - *git_save_cache
+# node_restore_cache: &node_restore_cache
+#   restore_cache:
+#     keys:
+#       - v1-dependencies-{{ checksum "package.json" }}
+#       - v1-dependencies-
 
-      - *node_restore_cache
-      - run: npm i
-      - *node_save_cache
+# node_save_cache: &node_save_cache
+#   save_cache:
+#     paths:
+#       - node_modules
+#     key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm run build
 
-      - persist_to_workspace:
-          root: ~/KayserCommentaryOrg/KayserCommentary
-          paths:
-            - public
-  deploy_staging:
-    <<: *defaults
-    steps:
-      - *git_restore_cache
-      - checkout
-      - *git_save_cache
+# jobs:
+#   build:
+#     <<: *defaults
+#     steps:
+#       - *git_restore_cache
+#       - checkout
+#       - *git_save_cache
 
-      - attach_workspace:
-          at: ~/KayserCommentaryOrg/KayserCommentary
+#       - *node_restore_cache
+#       - run: npm i
+#       - *node_save_cache
 
-      - run: sudo apt install -y rsync
-      - run: echo "dominioninstitute.org,208.113.161.19 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDN0aj+g1xMsxuyjqFF7bP10Tum1XWV4cR9qExaq9UjHhhA/m718Mjg6Ihu++GaDIM3G2pkPLein1hG6Fz8y0HmYt12JxQbCe5HFvZJoP+E/5KVtf4l/7VKu8XP3NZoN0hUpy4qg+eebZYvZiYxZMq3RjhZ65k/kYMN+mnTjEslbKrl5yHRvwX8NkPgK0Gc0rFU4dnNIJx7+nN72fnOm6Fs8IT3ThH6+HR3MX2LBkvQb0L+WEm+GhIDlCmTm/dpxLhBT9EKB1oTdSuzjl/JQGVBg5iu4TStot1S7vs/8ywMN9YJ7A375lnyh4LuSPrWrxSyDUeZM1h8gUEiWg8ubmaT" >> ~/.ssh/known_hosts
-      - run: mkdir -p staging-deploy
-      - run: cp -R public/* staging-deploy/
-      - run: npm run build:htaccess
-      - run: cp public/.htaccess staging-deploy/
-      - run: cp staging-robots.txt staging-deploy/robots.txt
-      - run: rsync -e "/usr/bin/ssh"  --bwlimit=2000 -avzi --delete --delete-after --exclude=.well-known/acme-challenge --include='*/' ./staging-deploy/. bibblue546832154@dominioninstitute.org:/home/bibblue546832154/staging.dominioninstitute.org
+#       - run: npm run build
 
-  deploy_production:
-    <<: *defaults
-    steps:
-      - *git_restore_cache
-      - checkout
-      - *git_save_cache
+#       - persist_to_workspace:
+#           root: ~/KayserCommentaryOrg/KayserCommentary
+#           paths:
+#             - public
+#   deploy_staging:
+#     <<: *defaults
+#     steps:
+#       - *git_restore_cache
+#       - checkout
+#       - *git_save_cache
 
-      - attach_workspace:
-          at: ~/KayserCommentaryOrg/KayserCommentary
+#       - attach_workspace:
+#           at: ~/KayserCommentaryOrg/KayserCommentary
 
-      - run: sudo apt install -y rsync
-      - run: echo "dominioninstitute.org,208.113.161.19 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDN0aj+g1xMsxuyjqFF7bP10Tum1XWV4cR9qExaq9UjHhhA/m718Mjg6Ihu++GaDIM3G2pkPLein1hG6Fz8y0HmYt12JxQbCe5HFvZJoP+E/5KVtf4l/7VKu8XP3NZoN0hUpy4qg+eebZYvZiYxZMq3RjhZ65k/kYMN+mnTjEslbKrl5yHRvwX8NkPgK0Gc0rFU4dnNIJx7+nN72fnOm6Fs8IT3ThH6+HR3MX2LBkvQb0L+WEm+GhIDlCmTm/dpxLhBT9EKB1oTdSuzjl/JQGVBg5iu4TStot1S7vs/8ywMN9YJ7A375lnyh4LuSPrWrxSyDUeZM1h8gUEiWg8ubmaT" >> ~/.ssh/known_hosts
-      - run: npm run build:htaccess
-      - run: rsync -e "/usr/bin/ssh"  --bwlimit=2000 -avzi --delete --delete-after --exclude=.well-known/acme-challenge --include='*/' ./public/. bibblue546832154@dominioninstitute.org:/home/bibblue546832154/dominioninstitute.org
+#       - run: sudo apt install -y rsync
+#       - run: echo "dominioninstitute.org,208.113.161.19 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDN0aj+g1xMsxuyjqFF7bP10Tum1XWV4cR9qExaq9UjHhhA/m718Mjg6Ihu++GaDIM3G2pkPLein1hG6Fz8y0HmYt12JxQbCe5HFvZJoP+E/5KVtf4l/7VKu8XP3NZoN0hUpy4qg+eebZYvZiYxZMq3RjhZ65k/kYMN+mnTjEslbKrl5yHRvwX8NkPgK0Gc0rFU4dnNIJx7+nN72fnOm6Fs8IT3ThH6+HR3MX2LBkvQb0L+WEm+GhIDlCmTm/dpxLhBT9EKB1oTdSuzjl/JQGVBg5iu4TStot1S7vs/8ywMN9YJ7A375lnyh4LuSPrWrxSyDUeZM1h8gUEiWg8ubmaT" >> ~/.ssh/known_hosts
+#       - run: mkdir -p staging-deploy
+#       - run: cp -R public/* staging-deploy/
+#       - run: npm run build:htaccess
+#       - run: cp public/.htaccess staging-deploy/
+#       - run: cp staging-robots.txt staging-deploy/robots.txt
+#       - run: rsync -e "/usr/bin/ssh"  --bwlimit=2000 -avzi --delete --delete-after --exclude=.well-known/acme-challenge --include='*/' ./staging-deploy/. bibblue546832154@dominioninstitute.org:/home/bibblue546832154/staging.dominioninstitute.org
 
-workflows:
-  version: 2
-  install_test_deploy:
-    jobs:
-      - build
-      - deploy_staging:
-          requires:
-            - build
-          filters:
-            branches:
-              only: staging
-      - deploy_production:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+#   deploy_production:
+#     <<: *defaults
+#     steps:
+#       - *git_restore_cache
+#       - checkout
+#       - *git_save_cache
+
+#       - attach_workspace:
+#           at: ~/KayserCommentaryOrg/KayserCommentary
+
+#       - run: sudo apt install -y rsync
+#       - run: echo "dominioninstitute.org,208.113.161.19 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDN0aj+g1xMsxuyjqFF7bP10Tum1XWV4cR9qExaq9UjHhhA/m718Mjg6Ihu++GaDIM3G2pkPLein1hG6Fz8y0HmYt12JxQbCe5HFvZJoP+E/5KVtf4l/7VKu8XP3NZoN0hUpy4qg+eebZYvZiYxZMq3RjhZ65k/kYMN+mnTjEslbKrl5yHRvwX8NkPgK0Gc0rFU4dnNIJx7+nN72fnOm6Fs8IT3ThH6+HR3MX2LBkvQb0L+WEm+GhIDlCmTm/dpxLhBT9EKB1oTdSuzjl/JQGVBg5iu4TStot1S7vs/8ywMN9YJ7A375lnyh4LuSPrWrxSyDUeZM1h8gUEiWg8ubmaT" >> ~/.ssh/known_hosts
+#       - run: npm run build:htaccess
+#       - run: rsync -e "/usr/bin/ssh"  --bwlimit=2000 -avzi --delete --delete-after --exclude=.well-known/acme-challenge --include='*/' ./public/. bibblue546832154@dominioninstitute.org:/home/bibblue546832154/dominioninstitute.org
+
+# workflows:
+#   version: 2
+#   install_test_deploy:
+#     jobs:
+#       - build
+#       - deploy_staging:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#               only: staging
+#       - deploy_production:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#               only: master
